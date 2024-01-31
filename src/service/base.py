@@ -13,3 +13,10 @@ class BaseService:
             query = select(cls.model.__table__.columns).filter_by(id=model_id)
             result = await session.execute(query)
             return result.mappings().all()
+
+    @classmethod
+    async def add(cls, **data):
+        async with async_session_maker() as session:
+            smt = insert(cls.model).values(**data)
+            await session.execute(smt)
+            await session.commit()
