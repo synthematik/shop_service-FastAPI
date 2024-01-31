@@ -1,9 +1,8 @@
-from fastapi import APIRouter
-from src.auth.schemas import AuthSchema
+from fastapi import APIRouter, Depends, Response
+from src.auth.schemas import RegisterSchema, LoginSchema
 from src.users.service import UserService
 from src.auth.exception import *
-from src.auth.auth import get_password_hash
-
+from src.auth.auth import get_password_hash, authenticate, create_access_token
 
 router = APIRouter(
     prefix="/auth",
@@ -12,7 +11,7 @@ router = APIRouter(
 
 
 @router.post("/register/")
-async def register_user(user_data: AuthSchema):
+async def register_user(user_data: RegisterSchema):
     existing_user = await UserService.find_user_by_email(user_data.email)
     if existing_user:
         raise UserAlreadyExistsException()
@@ -24,3 +23,14 @@ async def register_user(user_data: AuthSchema):
         hashed_password=hashed_password,
     )
     return {"message": "Пользователь добавлен в бд"}
+
+
+@router.post("/login/")
+async def login_user(response: Response, user_data: LoginSchema):
+    user = await authenticate(user_data.email, user_data.password)
+    if not user:
+        raise UserNotExistsException()
+    access_token = create_access_token({"sub": str(user[0].id)})
+    response.set_cookie("access_token", access_token, httponly=True)
+    return {"access_token": access_token}
+

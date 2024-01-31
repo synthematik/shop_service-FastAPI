@@ -12,3 +12,8 @@ class AuthException(HTTPException):
 class UserAlreadyExistsException(AuthException):
     status_code = status.HTTP_409_CONFLICT
     default_detail = "Пользователь с такой почтой уже существует"
+
+
+class UserNotExistsException(AuthException):
+    status_code = status.HTTP_401_UNAUTHORIZED
+    default_detail = "Неверная почта или пароль"
