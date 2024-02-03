@@ -27,7 +27,7 @@ async def authenticate(email: EmailStr, password: str):
 
 def create_access_token(data: dict) -> str:
     to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta(minutes=30)
+    expire = datetime.utcnow() + timedelta(hours=5)
     to_encode.update({"exp": expire})
     encode_jwt = jwt.encode(
         to_encode, settings.SECRET_KEY, settings.ALGORITHM
