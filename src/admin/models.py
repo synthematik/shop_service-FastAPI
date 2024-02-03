@@ -1,7 +1,7 @@
 from sqladmin import ModelView
 
 from src.users.models import Users
-from src.shop.models import Categories, Products
+from src.shop.models import Categories, Products, ProductImages
 
 
 class UserAdmin(ModelView, model=Users):
@@ -26,8 +26,20 @@ class ProductsAdmin(ModelView, model=Products):
         Products.product_price,
         Products.product_description,
         Products.category,
-        Products.category_id
+        Products.category_id,
     ]
     name_plural = "Продукты"
     name = "Продукт"
+    icon = "fa-solid"
+
+
+class ProductsImagesAdmin(ModelView, model=ProductImages):
+    column_list = [
+        ProductImages.id,
+        ProductImages.image_url,
+        ProductImages.product_id,
+        ProductImages.product
+    ]
+    name_plural = "Изображения"
+    name = "Изображение"
     icon = "fa-solid"
