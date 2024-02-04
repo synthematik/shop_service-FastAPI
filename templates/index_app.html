@@ -1,0 +1,29 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Главная
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+            <div class="col">
+                <div class="card h-100">
+                    {% set product_image = images|selectattr('product_id', 'eq', product.id)|first %}
+                    {% if product_image %}
+                        <img src="{{ url_for('static', path='images/products/' + product_image.image_url) }}" class="card-img-top" alt="...">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.product_name }}</h5>
+                        <p class="card-text">{{ product.product_description }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

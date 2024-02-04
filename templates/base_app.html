@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .logo__img {
+            max-width: 80px; /* Задайте желаемую ширину */
+        }
+
+        .header {
+            border-bottom: 1px solid #e3e3e3;
+            padding: 1rem 0;
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+        }
+
+        .btn {
+            margin-left: 0.5rem;
+        }
+    </style>
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+</head>
+
+<body>
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-between header">
+            <div class="col-md-3 mb-2 mb-md-0 text-md-end">
+                <a href="#" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <img class="logo__img" src="{{ url_for('static', path='images/logos/logo.jpg') }}" alt="logo">
+                </a>
+            </div>
+
+            <nav class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <a href="#" class="nav-link link-secondary">Главная</a>
+                <a href="#" class="nav-link">Ассортимент</a>
+                <a href="#" class="nav-link">Доставка и оплата</a>
+                <a href="#" class="nav-link">Контакты</a>
+                <a href="#" class="nav-link">О нас</a>
+            </nav>
+
+            <div class="col-md-3 text-md-end">
+                <button type="button" class="btn btn-outline-primary">Зарегистрироваться</button>
+                <button type="button" class="btn btn-primary">Войти</button>
+            </div>
+        </header>
+
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+    </div>
+</body>
+
+</html>
