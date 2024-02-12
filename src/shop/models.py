@@ -42,3 +42,10 @@ class ProductImages(Base):
     product_id = Column(Integer, ForeignKey('products.id'))
 
     product = relationship('Products', back_populates='images')
+
+
+class Orders(Base):
+    __tablename__ = 'orders'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    product_id = Column(Integer, ForeignKey('products.id'))

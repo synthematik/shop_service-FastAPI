@@ -1,5 +1,9 @@
 {% extends "base_app.html" %}
 
+{% block title %}
+    Не главная
+{% endblock %}
+
 {% block head %}
     <script>
         async function loginUser() {
@@ -16,7 +20,7 @@
                 body: JSON.stringify({email: email, password: password}),
             }).then(response => {
                 if (response.status === 200) {
-                    window.location.replace("/pages/hotels/");
+                    window.location.replace("/pages/");
                 } else {
                     return response.json();
                 }
