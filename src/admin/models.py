@@ -1,7 +1,7 @@
 from sqladmin import ModelView
 
 from src.users.models import Users
-from src.shop.models import Categories, Products, ProductImages
+from src.shop.models import Categories, Products, ProductImages, Orders
 
 
 class UserAdmin(ModelView, model=Users):
@@ -16,7 +16,7 @@ class CategoriesAdmin(ModelView, model=Categories):
     column_list = [Categories.id, Categories.category_name, Categories.products]
     name_plural = "Категории"
     name = "Категория"
-    icon = "fa-solid"
+    icon = "fa-solid fa-list"
 
 
 class ProductsAdmin(ModelView, model=Products):
@@ -42,4 +42,15 @@ class ProductsImagesAdmin(ModelView, model=ProductImages):
     ]
     name_plural = "Изображения"
     name = "Изображение"
-    icon = "fa-solid"
+    icon = "fa-solid fa-image"
+
+
+class OrdersAdmin(ModelView, model=Orders):
+    column_list = [
+        Orders.id,
+        Orders.product_id,
+        Orders.user_id
+    ]
+    name_plural = "Заказы"
+    name = "Заказ"
+    icon = "fa-solid fa-bags-shopping"

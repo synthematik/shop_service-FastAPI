@@ -23,6 +23,7 @@ class Products(Base):
     product_name = Column("product_name", String, nullable=False)
     product_price = Column("product_price", Integer, nullable=False)
     product_description = Column("product_description", String, nullable=False)
+    quantity = Column("quantity", Integer, nullable=False)
 
     images = relationship('ProductImages', back_populates='product')
 
