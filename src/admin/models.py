@@ -1,56 +1,58 @@
 from sqladmin import ModelView
 
-from src.users.models import Users
-from src.shop.models import Categories, Products, ProductImages, Orders
+from src.users.models import User
+from src.shop.products.models import Product, ProductImage
+from src.shop.orders.models import Order
+from src.shop.categories.models import Category
 
 
-class UserAdmin(ModelView, model=Users):
-    column_list = [Users.id, Users.email, Users.name, Users.last_name]
+class UserAdmin(ModelView, model=User):
+    column_list = [User.id, User.email, User.name, User.last_name]
     name_plural = "Пользователи"
     name = "Пользователь"
     icon = "fa-solid fa-user"
-    column_details_exclude_list = [Users.hashed_password]
+    column_details_exclude_list = [User.hashed_password]
 
 
-class CategoriesAdmin(ModelView, model=Categories):
-    column_list = [Categories.id, Categories.category_name, Categories.products]
+class CategoriesAdmin(ModelView, model=Category):
+    column_list = [Category.id, Category.category_name, Category.products]
     name_plural = "Категории"
     name = "Категория"
     icon = "fa-solid fa-list"
 
 
-class ProductsAdmin(ModelView, model=Products):
+class ProductsAdmin(ModelView, model=Product):
     column_list = [
-        Products.id,
-        Products.product_name,
-        Products.product_price,
-        Products.product_description,
-        Products.category,
-        Products.category_id,
+        Product.id,
+        Product.product_name,
+        Product.product_price,
+        Product.product_description,
+        Product.category,
+        Product.category_id,
     ]
     name_plural = "Продукты"
     name = "Продукт"
     icon = "fa-solid"
 
 
-class ProductsImagesAdmin(ModelView, model=ProductImages):
+class ProductsImagesAdmin(ModelView, model=ProductImage):
     column_list = [
-        ProductImages.id,
-        ProductImages.image_url,
-        ProductImages.product_id,
-        ProductImages.product
+        ProductImage.id,
+        ProductImage.url,
+        ProductImage.product_id,
+        ProductImage.product
     ]
     name_plural = "Изображения"
     name = "Изображение"
     icon = "fa-solid fa-image"
 
 
-class OrdersAdmin(ModelView, model=Orders):
+class OrdersAdmin(ModelView, model=Order):
     column_list = [
-        Orders.id,
-        Orders.product_id,
-        Orders.user_id
+        Order.id,
+        Order.product_id,
+        Order.user_id
     ]
     name_plural = "Заказы"
     name = "Заказ"
-    icon = "fa-solid fa-bags-shopping"
+    icon = "fa-solid fa-orders"

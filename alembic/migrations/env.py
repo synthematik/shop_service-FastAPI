@@ -7,8 +7,10 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from src.users.models import Users
-from src.shop.models import Categories, Products, ProductImages
+from src.users.models import User
+from src.shop.categories.models import Category
+from src.shop.products.models import Product, ProductImage
+from src.shop.orders.models import Order
 from src.database import Base
 from src.database import DATABASE_URL
 

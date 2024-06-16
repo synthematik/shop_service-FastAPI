@@ -7,7 +7,6 @@ from src.database import engine
 from src.users.router import router as users_router
 from src.auth.router import router as auth_router
 from src.admin.models import UserAdmin, ProductsAdmin, CategoriesAdmin, ProductsImagesAdmin, OrdersAdmin
-from src.pages.router import router as pages_router
 from src.shop.router import router as shop_router
 
 
@@ -16,8 +15,6 @@ app = FastAPI()
 app.include_router(users_router)
 
 app.include_router(auth_router)
-
-app.include_router(pages_router)
 
 app.include_router(shop_router)
 

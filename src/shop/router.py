@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.shop.service import ProductsService, ImagesService
+from src.shop.products.service import ProductsService, ImagesService
 
 
 router = APIRouter(

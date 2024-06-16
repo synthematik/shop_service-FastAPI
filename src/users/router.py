@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from src.users.service import UserService
 from src.users.schemas import UserSchema
 from typing import List
-from src.users.models import Users
+from src.users.models import User
 from src.auth.dependencies import get_current_user
 
 router = APIRouter(
@@ -12,7 +12,7 @@ router = APIRouter(
 
 
 @router.get("/{user_id}/")
-async def get_profile_by_id(user: Users = Depends(get_current_user)) -> List[UserSchema]:
+async def get_profile_by_id(user: User = Depends(get_current_user)) -> List[UserSchema]:
     return user
 
 

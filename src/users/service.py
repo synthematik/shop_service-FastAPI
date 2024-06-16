@@ -2,11 +2,11 @@ from sqlalchemy import select, insert
 
 from src.database import async_session_maker
 from src.service.base import BaseService
-from src.users.models import Users
+from src.users.models import User
 
 
 class UserService(BaseService):
-    model = Users
+    model = User
 
     @classmethod
     async def find_user_by_email(cls, email: str):
