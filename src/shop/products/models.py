@@ -8,9 +8,9 @@ from src.database import Base
 class Product(Base):
     __tablename__ = 'products'
 
-    product_name: Mapped[str] = mapped_column("product_name", nullable=False)
-    product_price: Mapped[int] = mapped_column("product_price", nullable=False)
-    product_description: Mapped[str] = mapped_column("product_description", nullable=False)
+    name: Mapped[str] = mapped_column("name", nullable=False)
+    price: Mapped[int] = mapped_column("price", nullable=False)
+    description: Mapped[str] = mapped_column("description", nullable=False)
     quantity: Mapped[int] = mapped_column("quantity", nullable=False)
 
     images = relationship('ProductImage', back_populates='product')
@@ -22,7 +22,7 @@ class Product(Base):
     orders = relationship('Order', back_populates='product')
 
     def __str__(self):
-        return f"{self.product_name}"
+        return f"{self.name}"
 
 
 class ProductImage(Base):

@@ -15,7 +15,7 @@ class UserAdmin(ModelView, model=User):
 
 
 class CategoriesAdmin(ModelView, model=Category):
-    column_list = [Category.id, Category.category_name, Category.products]
+    column_list = [Category.id, Category.name, Category.products]
     name_plural = "Категории"
     name = "Категория"
     icon = "fa-solid fa-list"
@@ -24,9 +24,9 @@ class CategoriesAdmin(ModelView, model=Category):
 class ProductsAdmin(ModelView, model=Product):
     column_list = [
         Product.id,
-        Product.product_name,
-        Product.product_price,
-        Product.product_description,
+        Product.name,
+        Product.price,
+        Product.description,
         Product.category,
         Product.category_id,
     ]
