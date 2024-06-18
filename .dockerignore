@@ -1,0 +1,8 @@
+.venv
+Dockerfile
+templates
+static
+__pycache__
+*.pyc
+*.pyo
+*.pyd
